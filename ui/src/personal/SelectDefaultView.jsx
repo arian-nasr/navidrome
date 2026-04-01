@@ -4,10 +4,18 @@ import albumLists, { defaultAlbumList } from '../album/albumLists'
 export const SelectDefaultView = (props) => {
   const translate = useTranslate()
   const current = localStorage.getItem('defaultView') || defaultAlbumList
-  const choices = Object.keys(albumLists).map((type) => ({
+
+  const albumChoices = Object.keys(albumLists).map((type) => ({
     id: type,
     name: translate(`resources.album.lists.${type}`),
   }))
+
+  const songChoice = {
+    id: 'songs',
+    name: translate('resources.song.name', { smart_count: 2 }),
+  }
+
+  const choices = [...albumChoices, songChoice]
 
   return (
     <SelectInput

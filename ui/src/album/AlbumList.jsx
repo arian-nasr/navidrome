@@ -225,6 +225,9 @@ const AlbumList = (props) => {
     const type =
       albumListType || localStorage.getItem('defaultView') || defaultAlbumList
     const listParams = albumLists[type]
+    if (type === 'songs') {
+      return <Redirect to="/song" />
+    }
     if (type === 'random') {
       refresh()
     }
